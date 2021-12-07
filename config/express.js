@@ -1,5 +1,9 @@
 const express    = require('express')
 const bodyParser = require('body-parser')
+const dotenv = require("dotenv");
+dotenv.config();
+
+const MY_PORT = process.env.PORT
 
 const RowController =require('../api/data/Database')
 const profileController = require('../api/controller/ProfileController.js')
@@ -36,8 +40,8 @@ app.post('/authenticate', async (req,res)=> {
 
 
 
-app.listen(process.env.PORT,() => {
-  console.log(`Servidor rodando na porta ${process.env.PORT}`)
+app.listen(MY_PORT,() => {
+  console.log(`Servidor rodando na porta ${MY_PORT}`)
 })
   
 
