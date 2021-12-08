@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const dotenv = require("dotenv");
 dotenv.config();
 
-const MY_PORT = 3000 //process.env.PORT
+const MY_PORT = process.env.PORT
 
 const RowController =require('./api/data/Database')
 const profileController = require('./api/controller/ProfileController.js');
@@ -38,9 +38,8 @@ app.post('/authenticate', async (req,res)=> {
 })
 
 app.get('/Production',async (req,res)=>{
-  const nome = req.query
+  const nome = req.query.name
   const producao = await GraficoController.dadosEncarregado(nome)
-  console.log(producao)
   return res.json(producao)
 })
 
