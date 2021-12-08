@@ -7,7 +7,7 @@ module.exports = {
         let data = await DB.buscarDadosProducao()
        
         data.forEach(row => {
-            if(row[0] = nome ){
+            if(row[0] == nome ){
                 producao.push(row)
             }
         });

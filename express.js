@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const dotenv = require("dotenv");
 dotenv.config();
 
-const MY_PORT = process.env.PORT
+const MY_PORT = 3000 //process.env.PORT
 
 const RowController =require('./api/data/Database')
 const profileController = require('./api/controller/ProfileController.js');
@@ -33,15 +33,15 @@ app.post('/authenticate', async (req,res)=> {
     //encontrado
     return res.status(200).json(user)
   }else {
-    return res.status(400).send( { error: "Usuário não encontrado"})
+    return res.status(400).json(user)
   }
 })
 
 app.get('/Production',async (req,res)=>{
   const nome = req.query
-  console.log(nome)
   const producao = await GraficoController.dadosEncarregado(nome)
-  return res.json({producao})
+  console.log(producao)
+  return res.json(producao)
 })
 
 app.get('/getSheet/:id', async(req,res) => {
