@@ -14,6 +14,47 @@ module.exports = {
         }
         return dados
     },
+    async buscarDadosProducao(){
+        let sheet;
+        var linhas
+        await getDoc().then(async doc => {
+            sheet = await doc.sheetsByIndex[3];
+            linhas = await sheet.getRows()
+        })
+        let dados = []
+        for(let i = 0; i < linhas.length; i++){
+            dados.push(linhas[i]._rawData)
+        }
+        return dados
+    },
+    async buscarListaEncarregados(){
+        let sheet;
+        var linhas
+        await getDoc().then(async doc => {
+            sheet = await doc.sheetsByIndex[4];
+            linhas = await sheet.getRows()
+        })
+        let dados = []
+        for(let i = 0; i < linhas.length; i++){
+            dados.push(linhas[i]._rawData)
+        }
+        return dados
+    },
+    async buscarPlanilha(id){
+        let sheet;
+        var linhas
+        await getDoc().then(async doc => {
+            sheet = await doc.sheetsByIndex[id];
+            linhas = await sheet.getRows()
+        })
+        let dados = []
+        for(let i = 0; i < linhas.length; i++){
+            dados.push(linhas[i]._rawData)
+        }
+        return dados
+    }
+
+
     
 }
 
