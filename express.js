@@ -37,6 +37,12 @@ app.post('/authenticate', async (req,res)=> {
   }
 })
 
+app.post('/grafico',async(req,res)=>{
+  const request = req.body
+  const dados = await GraficoController.dadosGraficoProducao(request.dataInicial,request.dataFinal,request.name)
+  return res.json(dados)
+})
+
 app.get('/Production',async (req,res)=>{
   const nome = req.query.name
   const producao = await GraficoController.dadosEncarregado(nome)
