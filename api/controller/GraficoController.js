@@ -3,7 +3,7 @@ const DB = require('../data/Database')
 module.exports = {
     async dadosEncarregado(nome) {
         //let found = false
-        let qtdPostes = 0
+        
         let producao = []
         let data = await DB.buscarDadosProducao()
         data.map(row => {
@@ -16,6 +16,7 @@ module.exports = {
         
     },
     async dadosGraficoProducao(inicio,fim,nome){
+        let qtdPostes = 0
         let producao = []
         let data = await DB.buscarDadosProducao()
         //AAAA-MM-DD
@@ -30,7 +31,7 @@ module.exports = {
             let planDate = new Date(dataFormatada)
             //console.log(planDate.getDate() <= dataInicial.getDate()?'sim '+planDate+"é menor que "+dataInicial:'não')
             if ((String(row[0])) === (String(nome)) && (planDate >= dataInicial) &&(planDate <= dataFinal)) {
-                qtdPostes = qtdPostes + row[2]
+                qtdPostes = qtdPostes + (Number(row[2]))
                 producao.push(row)
             }
         });
