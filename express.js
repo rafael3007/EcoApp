@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const dotenv = require("dotenv");
 dotenv.config();
 
-const MY_PORT = process.env.PORT
+const MY_PORT = 7777//process.env.PORT
 
 const RowController =require('./api/data/Database')
 const profileController = require('./api/controller/ProfileController.js');
@@ -19,6 +19,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.get('/getData',async (req,res)=>{
   let data = await RowController.buscarBD()
   console.log(req.params)
+  res.json(data)
+})
+
+app.get('/',async (req,res)=>{
+  var data = {
+    "resultado": 'online'
+  }
   res.json(data)
 })
 
@@ -40,6 +47,11 @@ app.post('/authenticate', async (req,res)=> {
 app.post('/grafico',async(req,res)=>{
   const request = req.body
   const dados = await GraficoController.dadosGraficoProducao(request.dataInicial,request.dataFinal,request.name)
+  return res.json(dados)
+})
+
+app.post('/graf',async(req,res)=>{
+  const dados = await GraficoController.dadosGraficoProducao('2022-01-03','2022-01-21','ADAILTON')
   return res.json(dados)
 })
 

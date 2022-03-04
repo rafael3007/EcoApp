@@ -23,6 +23,8 @@ module.exports = {
         let dataInicial = new Date(inicio)
         let dataFinal = new Date(fim)
 
+        console.log(`ini: ${dataInicial}, final : ${dataFinal}`)
+        
         data.map(row => {
             //nome
             var arrDataBruta = row[1].split('/')
@@ -35,7 +37,6 @@ module.exports = {
                 producao.push(row)
             }
         });
-
         return {producao,qtdPostes}
     }
 }
