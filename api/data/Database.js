@@ -1,61 +1,74 @@
 const getDoc = require('./config')
 
 module.exports = {
+    //get all data of sheet on position 0
     async buscarBD() {
         let sheet;
-        var linhas
+        var row
+        //connection with googhe sheets and get sheet with index 0
         await getDoc().then(async doc => {
             sheet = await doc.sheetsByIndex[0];
-            linhas = await sheet.getRows()
+            row = await sheet.getRows()
         })
-        let dados = []
-        for(let i = 0; i < linhas.length; i++){
-            dados.push(linhas[i]._rawData)
+        let data = []
+        //map all rows and inset in the array 
+        for(let i = 0; i < row.length; i++){
+            data.push(row[i]._rawData)
         }
-        return dados
+        //return the data of sheet
+        return data
     },
+    //get all the data from the specific sheet, in the case of production 
     async buscarDadosProducao(){
         let sheet;
-        var linhas
+        var row
+        //conection and get the sheet with index 3
         await getDoc().then(async doc => {
             sheet = await doc.sheetsByIndex[3];
-            linhas = await sheet.getRows()
+            row = await sheet.getRows()
         })
-        let dados = []
-        for(let i = 0; i < linhas.length; i++){
-            dados.push(linhas[i]._rawData)
+        let data = []
+        //map all rows and inset in the array 
+        for(let i = 0; i < row.length; i++){
+            data.push(row[i]._rawData)
         }
-        return dados
+        //return the data of sheet
+        return data
     },
+    //get all the data from the specific sheet, in the case of Leaders 
     async buscarListaEncarregados(){
         let sheet;
-        var linhas
+        var row
+        //conection and get the sheet with index 4
         await getDoc().then(async doc => {
             sheet = await doc.sheetsByIndex[4];
-            linhas = await sheet.getRows()
+            row = await sheet.getRows()
         })
-        let dados = []
-        for(let i = 0; i < linhas.length; i++){
-            dados.push(linhas[i]._rawData)
+        let data = []
+        //map all rows and inset in the array 
+        for(let i = 0; i < row.length; i++){
+            data.push(row[i]._rawData)
         }
-        return dados
+        //return the data of sheet
+        return data
     },
+    //get all data from the a specific sheet that is passed by function
     async buscarPlanilha(id){
         let sheet;
-        var linhas
+        var row
+        //get the id of sheet that is passed for get its data
         await getDoc().then(async doc => {
             sheet = await doc.sheetsByIndex[id];
-            linhas = await sheet.getRows()
+            row = await sheet.getRows()
         })
-        let dados = []
-        for(let i = 0; i < linhas.length; i++){
-            dados.push(linhas[i]._rawData)
+        let data = []
+        //map all rows and inset in the array 
+        for(let i = 0; i < row.length; i++){
+            data.push(row[i]._rawData)
         }
-        return dados
-    }
-
-
-    
+        //return the data of sheet
+        return data
+    } 
 }
 
 
