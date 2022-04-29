@@ -30,9 +30,12 @@ module.exports = {
             var dataFormatada = arrDataBruta[1] + '-' + arrDataBruta[0] + '-' +
             arrDataBruta[2]
             let planDate = new Date(dataFormatada)
+
+            //planDate > dataInicial?((planDate <= dataFinal)?((String(row[0])) === (String(nome))?(console.log("sucesso")):(console.log('entrou no if mas o nome deu errado'))):console.log(`${planDate} é maior que ${dataInicial}, mas é maior que ${dataFinal}`)):(console.log(`${planDate} é menor que ${dataInicial}`))
             
             if ((String(row[0])) === (String(nome)) && (planDate >= dataInicial) &&(planDate <= dataFinal)) {
                 qtdPostes = qtdPostes + (Number(row[2]))
+                console.log('salve')
                 //add data that the dates match
                 producao.push(row)
             }

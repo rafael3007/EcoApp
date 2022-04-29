@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 
-const MY_PORT = 443//process.env.PORT
+const MY_PORT = process.env.PORT || 7777
 
 const rowController =require('./api/data/Database')
 const profileController = require('./api/controller/ProfileController.js');
@@ -35,6 +35,7 @@ app.get('/',async (req,res)=>{
 //Route Authenticate
 app.post('/authenticate', async (req,res)=> {
   const response = req.body
+  console.log(response)
   //Find user
   const user = await profileController.AuthUser(response.email, (Number(response.password)))
   if(user.found){
@@ -49,6 +50,7 @@ app.post('/authenticate', async (req,res)=> {
 //Route create grafic initial
 app.post('/grafico',async(req,res)=>{
   const request = req.body
+  console.log(`data inicial>>. ${request.dataInicial}. Data Final>>> ${request.dataFinal}. Nome >>> ${request.name}`)
   const dados = await graficoController.dadosGraficoProducao(request.dataInicial,request.dataFinal,request.name)
   return res.json(dados)
 })
